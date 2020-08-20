@@ -9,6 +9,8 @@
 Servo servo1;
 Servo servo2;
 
+int const ponto_inicial = 90;
+
 int joystickX = 0;
 int joystickY = 0;
 // int joystickZ = 0;
@@ -62,7 +64,7 @@ void setup() {
   //pinMode(EIXO_Y, INPUT);
   //pinMode(EIXO_Z, INPUT_PULLUP);
   
-  servo1.write(90);
+  servo1.write(ponto_inicial);
 
   joystickRepousoX = map(analogRead(A0), 0, 1023, 0, 180);
   joystickRepousoY = map(analogRead(A1), 0, 1023, 0, 180);
@@ -86,12 +88,13 @@ void loop() {
   if(joystickX != joystickRepousoX){
     // x não está em repouso
     //definindo o valor/posição do servomotor
-    servo.write(joystickX);
-  } else {
-    servo.write(90);
-  }
+    servo1.write(joystickX);
+  } 
+  // se quiser voltar ao ponto inicial
+  // else {
+  //   servo1.write(ponto_inicial);
+  // }
 
-  
   // if(joystickY != joystickRepousoY){
   //   // y não está em repouso
   //   servo.write(joystickY);
